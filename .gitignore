@@ -1,0 +1,7 @@
+simulator/build/
+software/base-port/base/build/
+software/functest/build/
+software/base-port/tool/build/
+software/functest/.result
+.vscode/
+.hdl_checker/

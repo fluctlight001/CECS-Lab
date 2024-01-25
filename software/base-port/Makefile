@@ -18,7 +18,7 @@ INC_PATH += -I$(BASE_PORT)/base/include
 INC_PATH += -I$(BASE_PORT)/tool/include
 
 # FLAGS and LIBS
-CFLAGS    += -O3 -Wall -Werror $(INC_PATH) -Wno-main -fno-asynchronous-unwind-tables -fno-builtin -fno-stack-protector -MMD
+CFLAGS    += -O2 -Wall -Werror $(INC_PATH) -Wno-main -fno-asynchronous-unwind-tables -fno-builtin -fno-stack-protector -MMD
 AFLAGS 	  += -MMD $(INC_PATH) 
 LDFLAGS   += -T $(BASE_PORT)/script/linker.ld --defsym=_pmem_start=0x80000000 --defsym=_entry_offset=0x0 
 LIBS 	  += $(BASE_PORT)/base/build/libbase.a $(BASE_PORT)/tool/build/libtool.a
@@ -38,6 +38,9 @@ COLOR_NONE  		= \033[0m
 
 # Compile C to object file
 ## Lab1 TODO: add C compile rule
+$(TAR_DIR)/%.o: %.c
+	@mkdir -p $(dir $@) && echo "$(COLOR_YELLOW)[CC]$(COLOR_NONE) $<"
+	@$(CC) $(CFLAGS) -c -o $@ $(realpath $<)
 
 # Compile assembly to object file
 $(TAR_DIR)/%.o: %.S
@@ -54,7 +57,7 @@ $(IMAGE).elf: $(OBJS) $(LIBS)
 	@echo "$(COLOR_YELLOW)[LD]$(COLOR_NONE) build/$(notdir $@)" 
 	@$(LD) $(LDFLAGS) -o $@ --start-group $(LINKAGE) --end-group
 ## Lab1 TODO: add disassemble command here
-	
+	@$(OBJ_DUMP) -d $@ > $(IMAGE).txt
 	@$(OBJ_COPY) -O binary $@ $(IMAGE).bin
 
 image: $(IMAGE).elf
@@ -68,4 +71,4 @@ gdb: image
 clean: 
 	rm -rf $(BUILD_DIR)
 clean-all:
-	rm -rf $(BUILD_DIR) $(BASE_PORT)/*/build
+	rm -rf $(BUILD_DIR) $(BASE_PORT)/*/build $(SIM_PATH)/*/build

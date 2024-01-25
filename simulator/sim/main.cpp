@@ -32,11 +32,12 @@ int main(int argc, char** argv, char** env) {
     // init asm code translator
     init_disasm("riscv32");
 
-    init_sdb(argv[3]);
     // start wave trace
+#ifdef DUMP_WAVE
     Verilated::traceEverOn(true);
     dut->trace(m_trace, 5);
     m_trace->open("waveform.vcd");
+#endif
     reset(1);
     
     // start running

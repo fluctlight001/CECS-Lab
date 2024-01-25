@@ -1,11 +1,13 @@
-# CECS-Lab
-本仓库维护了中国科大2023秋季学期《计算系统综合实验》框架代码。
-## 结构解读
-simulator和software两个文件夹中，存放了本系列实验的框架代码。Lab1-Lab7文件夹中，各存放有一个zinit.sh脚本，这个脚本可以将当次实验中所需的大部分代码链接到这个文件夹下，从而方便大家进行实验。
-## 系统要求
-本系列实验必须在Linux系统下运行。若放置在Windows系统下，则可能会出现符号链接失效等问题。
-## 开发人员
-* 古宜民
-* 吕涵祺
-* 马子睿
-* 沈周毅
+# Simplified SystemVerilog Difftest Environment
+
+## How to Use
+
+To use this simplified SystemVerilog Difftest environment, follow these steps:
+
+1. Change directory to the `software/functest/` folder:
+
+   ```bash
+   cd software/functest/
+   make run  # test all 
+   make run NAMES = dummy # test one
+   ```

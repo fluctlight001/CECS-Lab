@@ -74,11 +74,20 @@ void difftest_sync(){
 
 // check the registers with nemu
 bool isa_difftest_checkregs(CPU_state *ref_r, vaddr_t pc) {
+    // check pc
+    if (sim_cpu.pc != ref_r->pc) {
+        printf(ANSI_BG_RED "NPC pc = " FMT_WORD ", is different from NEMU pc = " FMT_WORD ANSI_NONE "\n", sim_cpu.pc, ref_r->pc) ; 
+        return false;
+    }
   // check gpr
-  // Lab3 TODO: implement the regfile check function, return false if any difference, and output some infomation of the difference
-
-  // check pc
-  // Lab3 TODO: implement the pc check function, return false if any difference, and output some infomation of the difference
+    for (int i = 0; i < 32; i++){
+        if (sim_cpu.gpr[i] != ref_r->gpr[i]) {
+            printf(ANSI_BG_RED "NPC is different before executing instruction at pc = " FMT_WORD ANSI_NONE
+            "\n gpr [%d] right = " FMT_WORD ", wrong = " FMT_WORD "\n",
+            sim_cpu.gpr[i], i, ref_r->gpr[i], sim_cpu.gpr[i]); 
+            return false;
+        }
+    }
 
   const char *csr_names[] = {"mepc", "mstatus", "mcause", "mtvec"};
   // check csr

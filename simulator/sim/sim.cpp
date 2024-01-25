@@ -15,7 +15,6 @@ extern VerilatedVcdC *m_trace;
 
 extern uint8_t pmem[];
 
-void print_itrace();
 void difftest_step();
 
 // Lab2 HINT: instruction log struct for instruction trace
@@ -40,8 +39,14 @@ uint64_t g_nr_guest_inst = 0;
 // simulate a single cycle
 void single_cycle() {
 // Lab2 TODO: implement the single cycle function of your cpu
-
-  // m_trace->dump(sim_time++); 
+  dut->clk = 0;
+  dut->eval();
+  dut->clk = 1;
+  dut->eval();
+  #ifdef DUMP_WAVE
+    sim_time++;
+        m_trace->dump(sim_time);
+#endif
   if(dut->commit_wb == 1) set_state();
 }
 
@@ -96,7 +101,7 @@ void cpu_exec(unsigned int n){
         difftest_sync();
       }
       // Lab3 TODO: use difftest_step function here to execute difftest
-      
+      difftest_step();
       g_nr_guest_inst++;
       npc_cpu_uncache_pre = dut->uncache_read_wb;
     }
@@ -161,8 +166,4 @@ void isa_reg_display() {
   for (int i = 0; i < 32; i++) {
     printf("gpr[%d](%s) = 0x%x\n", i, regs[i], cpu_gpr[i]);
   }
-}
-
-void print_itrace() {
-  // Lab2 HINT: you can implement this function to help you print the instruction trace
 }
