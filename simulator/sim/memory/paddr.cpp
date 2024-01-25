@@ -1,9 +1,9 @@
-#include "VCPU.h"
+#include "VSimTop.h"
 
 #include <assert.h>
 #include "common.h"
 
-extern VCPU* dut;
+extern VSimTop* dut;
 // the physical memory of our simulator
 uint8_t pmem[CONFIG_MSIZE];
 

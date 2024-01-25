@@ -25,7 +25,7 @@ VFLAGS +=							\
 CINC_PATH 			= -CFLAGS -I$(CSRC_DIR)/include 
 CSRC 				= $(shell find $(CSRC_DIR) -name "*.c*")
 VSRC 				= $(shell find $(VSRC_DIR) -name "*.sv")
-VBIN 				=  $(OBJ_DIR)/$(addprefix V, $(basename $(notdir $(VERILOG_TOP))))
+VBIN 				=  $(OBJ_DIR)/$(addprefix V, $(EMU_TOP))
 REWRITE 			= $(abspath ./script/rewrite.mk)
 
 

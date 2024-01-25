@@ -1,5 +1,5 @@
 #include <verilated_vcd_c.h>
-#include "VCPU.h"
+#include "VSimTop.h"
 #include <bits/stdc++.h>
 
 #include "include/debug.h"
@@ -8,7 +8,7 @@
 
 
 // verilog instance
-VCPU *dut = new VCPU;
+VSimTop *dut = new VSimTop;
 // wave tracer
 VerilatedVcdC *m_trace = new VerilatedVcdC;
 

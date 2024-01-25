@@ -6,7 +6,7 @@ IMG ?= $(APP_IMG)
 
 
 $(VBIN): $(CSRC) $(VSRC)
-	@echo "$(COLOR_YELLOW)[VERILATE]$(COLOR_NONE) $(notdir $(OBJ_DIR))/VCPU"
+	@echo "$(COLOR_YELLOW)[VERILATE]$(COLOR_NONE) $(notdir $(OBJ_DIR))/VSimTop"
 	@verilator $(VFLAGS) $(CSRC) $(CINC_PATH) $(VERILOG_TOP)
 	@make -s -C $(OBJ_DIR) -f $(REWRITE)
 

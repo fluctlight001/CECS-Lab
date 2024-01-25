@@ -1,5 +1,5 @@
 #include "verilated_dpi.h"
-#include "VCPU.h"
+#include "VSimTop.h"
 #include "verilated_vcd_c.h"
 #include <bits/stdc++.h>
 #include "include/debug.h"
@@ -9,7 +9,7 @@
 
 using namespace std;
 
-extern VCPU *dut;
+extern VSimTop *dut;
 extern uint64_t sim_time;
 extern VerilatedVcdC *m_trace;
 
@@ -163,7 +163,18 @@ extern "C" void set_csr_ptr(const svOpenArrayHandle mstatus, const svOpenArrayHa
 }
 
 void isa_reg_display() {
+  int i;
   for (int i = 0; i < 32; i++) {
-    printf("gpr[%d](%s) = 0x%x\n", i, regs[i], cpu_gpr[i]);
+    printf("%s: 0x%08x  ", regs[i], cpu_gpr[i]);
+    if (i%4==3) printf("\n");
   }
 }
+
+// void isa_reg_display() {
+//   int i;
+//   for (i = 0; i < 32; i ++) {
+//     printf("%s: 0x%08x ", regsl[i], cpu.gpr[i]._32);
+//     if (i % 4 == 3) printf("\n");
+//   }
+//   printf("pc: 0x%08x\n", cpu.pc);
+// }

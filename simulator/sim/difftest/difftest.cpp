@@ -82,8 +82,8 @@ bool isa_difftest_checkregs(CPU_state *ref_r, vaddr_t pc) {
   // check gpr
     for (int i = 0; i < 32; i++){
         if (sim_cpu.gpr[i] != ref_r->gpr[i]) {
-            printf(ANSI_BG_RED "NPC is different before executing instruction at pc = " FMT_WORD ANSI_NONE
-            "\n gpr [%d] right = " FMT_WORD ", wrong = " FMT_WORD "\n",
+            printf(ANSI_BG_RED "Diff at pc = " FMT_WORD ANSI_NONE
+            " ======> gpr[%d] " ANSI_BG_GREEN "right = " FMT_WORD  ANSI_NONE   "  " ANSI_BG_RED "wrong ="  FMT_WORD ANSI_NONE "\n\n",
             sim_cpu.gpr[i], i, ref_r->gpr[i], sim_cpu.gpr[i]); 
             return false;
         }

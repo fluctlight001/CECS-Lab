@@ -5,3 +5,4 @@ software/base-port/tool/build/
 software/functest/.result
 .vscode/
 .hdl_checker/
+simulator/IP/mycpu/*.sv
