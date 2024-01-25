@@ -19,3 +19,7 @@ To use this simplified SystemVerilog Difftest environment, follow these steps:
 3. Reference code
    - [USTC-RVSoC](https://github.com/WangXuan95/USTC-RVSoC)
    - [DreamCore](https://github.com/lizhirui/DreamCore)
+
+
+## Plan
+ 1. Both support verilator and vcs
