@@ -18,10 +18,6 @@ run: $(VBIN) $(NEMUISO) $(IMG)
 	@echo "$(COLOR_YELLOW)[Run IMG]$(COLOR_NONE)" $(notdir $(IMG))
 	@$(VBIN) $(IMG) $(NEMUISO) $(ARGS)
 
-wave:
-	@echo "$(COLOR_YELLOW)[Wave IMG]$(COLOR_NONE)" $(notdir $(IMG))
-	@gtkwave $(IMG).vcd
-
 gdb: $(VBIN) $(NEMUISO) $(IMG)
 	@echo "$(COLOR_YELLOW)[GDB IMG]$(COLOR_NONE)" $(notdir $(IMG))
 	@gdb -s $(VBIN) --args $(VBIN) $(IMG) $(NEMUISO) $(ARGS)
@@ -30,11 +26,12 @@ app: $(VBIN) $(APP_IMG) $(NEMUISO)
 	@$(VBIN) $(APP_IMG) $(NEMUISO) $(ARGS)
 
 clean:
-	@echo rm -rf OBJ_DIR *vcd
+	@rm -rf OBJ_DIR *vcd
 	@rm -rf $(OBJ_DIR)
 	@rm -rf *.vcd
+
 clean-all:
-	@echo rm -rf OBJ_DIR *vcd NEMU_DIFF
+	@rm -rf OBJ_DIR *vcd NEMU_DIFF
 	@rm -rf $(OBJ_DIR)
 	@rm -rf *.vcd
 	@make -s -C $(NEMU_DIR) clean

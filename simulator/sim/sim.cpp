@@ -169,12 +169,3 @@ void isa_reg_display() {
     if (i%4==3) printf("\n");
   }
 }
-
-// void isa_reg_display() {
-//   int i;
-//   for (i = 0; i < 32; i ++) {
-//     printf("%s: 0x%08x ", regsl[i], cpu.gpr[i]._32);
-//     if (i % 4 == 3) printf("\n");
-//   }
-//   printf("pc: 0x%08x\n", cpu.pc);
-// }

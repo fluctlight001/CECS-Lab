@@ -19,6 +19,8 @@ To use this simplified SystemVerilog Difftest environment, follow these steps:
 3. Reference code
    - [DreamCore](https://github.com/lizhirui/DreamCore)
 
+4. riscv toolchain mirror
+   - [plct-mirror](https://help.mirrors.cernet.edu.cn/riscv-toolchains/)
 
 ## Plan
  1. Both support verilator and vcs
