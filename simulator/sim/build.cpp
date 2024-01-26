@@ -3,6 +3,7 @@
 #include <assert.h>
 #include "include/debug.h"
 #include <string.h>
+#include "common.h"
 
 extern uint8_t pmem[];
 
@@ -31,8 +32,8 @@ uint64_t load_img(char *img_file){
     fseek(fp, 0, SEEK_END);
     uint64_t size = ftell(fp);
     fseek(fp, 0, SEEK_SET);
-    if(size > 128 * 1024 * 1024){
-        printf("Image too large\n");
+    if(size > CONFIG_MSIZE){
+        printf("Image is too large to fit in memory\n");
         exit(1);
     }
     int ret = fread(pmem, size, 1, fp);

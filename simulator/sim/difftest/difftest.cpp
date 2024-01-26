@@ -84,7 +84,7 @@ bool isa_difftest_checkregs(CPU_state *ref_r, vaddr_t pc) {
         if (sim_cpu.gpr[i] != ref_r->gpr[i]) {
             printf(ANSI_BG_RED "Diff at pc = " FMT_WORD ANSI_NONE
             " ======> gpr[%d] " ANSI_BG_GREEN "right = " FMT_WORD  ANSI_NONE   "  " ANSI_BG_RED "wrong ="  FMT_WORD ANSI_NONE "\n\n",
-            sim_cpu.gpr[i], i, ref_r->gpr[i], sim_cpu.gpr[i]); 
+            sim_cpu.pc, i, ref_r->gpr[i], sim_cpu.gpr[i]); 
             return false;
         }
     }
@@ -126,8 +126,8 @@ static void checkmem(uint8_t *ref_m, vaddr_t pc) {
 void difftest_step() {
   CPU_state ref_r;
   difftest_regcpy(&ref_r, DIFFTEST_TO_DUT);
-  // difftest_memcpy(CONFIG_MBASE, ref_pmem, CONFIG_MSIZE, DIFFTEST_TO_DUT);
+  difftest_memcpy(CONFIG_MBASE, ref_pmem, CONFIG_MSIZE, DIFFTEST_TO_DUT);
   checkregs(&ref_r, sim_cpu.pc);
   difftest_exec(1);
-  // checkmem(ref_pmem, sim_cpu.pc);
+  checkmem(ref_pmem, sim_cpu.pc);
 }

@@ -83,7 +83,6 @@ void cpu_exec(unsigned int n){
       return;
     default: sim_state.state = SIM_RUNNING;
   }
-  // Lab2 TODO: implement instruction trace for your cpu
 
   bool npc_cpu_uncache_pre = 0;
   while (n--) {
@@ -100,7 +99,7 @@ void cpu_exec(unsigned int n){
       if(npc_cpu_uncache_pre){
         difftest_sync();
       }
-      // Lab3 TODO: use difftest_step function here to execute difftest
+
       difftest_step();
       g_nr_guest_inst++;
       npc_cpu_uncache_pre = dut->uncache_read_wb;
